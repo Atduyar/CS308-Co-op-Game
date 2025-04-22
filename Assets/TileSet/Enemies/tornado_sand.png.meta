@@ -142,6 +142,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -422,7 +435,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      tornado_sand_0: 2635920889513433895
+      tornado_sand_1: 4594525474324497091
+      tornado_sand_10: -2264356779114380219
+      tornado_sand_11: 6278103324260590754
+      tornado_sand_2: -279218621345902690
+      tornado_sand_3: 4042920857095031310
+      tornado_sand_4: 6244617388663029026
+      tornado_sand_5: 8415331469081145394
+      tornado_sand_6: 7062593370161569366
+      tornado_sand_7: 5031187934509772774
+      tornado_sand_8: -245846874771846511
+      tornado_sand_9: 214561096699611235
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

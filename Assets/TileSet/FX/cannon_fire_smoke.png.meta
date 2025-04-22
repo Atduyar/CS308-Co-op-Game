@@ -130,6 +130,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -322,7 +335,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      cannon_fire_smoke_0: -2928606938930873853
+      cannon_fire_smoke_1: -2115101811046129873
+      cannon_fire_smoke_2: -1497972617805506761
+      cannon_fire_smoke_3: 1505846843587675952
+      cannon_fire_smoke_4: 4035198239832205363
+      cannon_fire_smoke_5: -3563257136011144086
+      cannon_fire_smoke_6: -3707790140507836910
+      cannon_fire_smoke_7: -2251155378919999063
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

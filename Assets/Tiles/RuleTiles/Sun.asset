@@ -12,9 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
   m_Name: Sun
   m_EditorClassIdentifier: 
-  m_AnimatedSprites: []
-  m_MinSpeed: 1
-  m_MaxSpeed: 1
+  m_AnimatedSprites:
+  - {fileID: 605162050437240712, guid: 199aec00dd6603e46af2c773b9b2c8dd, type: 3}
+  - {fileID: 2478982479046213345, guid: 199aec00dd6603e46af2c773b9b2c8dd, type: 3}
+  - {fileID: -7018185981625310791, guid: 199aec00dd6603e46af2c773b9b2c8dd, type: 3}
+  - {fileID: 8847054276605350839, guid: 199aec00dd6603e46af2c773b9b2c8dd, type: 3}
+  - {fileID: 3952879686552239645, guid: 199aec00dd6603e46af2c773b9b2c8dd, type: 3}
+  - {fileID: -7744155527204253199, guid: 199aec00dd6603e46af2c773b9b2c8dd, type: 3}
+  m_MinSpeed: 7
+  m_MaxSpeed: 7
   m_AnimationStartTime: 0
   m_AnimationStartFrame: 0
   m_TileColliderType: 0

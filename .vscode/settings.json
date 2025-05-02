@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "CS308-Co-op-Game.sln"
+    "dotnet.defaultSolution": "CS308-co-op-game.sln"
 }

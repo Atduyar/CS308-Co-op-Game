@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Move");
         movement.x = ctx.ReadValue<Vector2>().x;
     }
+
     public void Jump(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)

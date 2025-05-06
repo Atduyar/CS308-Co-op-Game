@@ -3,5 +3,5 @@
 
 ### Collaborators
 [Ahmet Tarik Duyar](https://github.com/Atduyar)  
-[Abdullah Acar](https://github.com/softwacar)
-[Altan Berk Eren](https://github.com/altanberkeren)
+[Abdullah Acar](https://github.com/softwacar)  
+[Altan Berk Eren](https://github.com/altanberkeren)  

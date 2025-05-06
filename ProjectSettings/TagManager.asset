@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Chekpoint
   - DeadlyByTouch
+  - Collactable
   layers:
   - Default
   - TransparentFX

@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext ctx)
     {
-        Debug.Log("Move");
+        //Debug.Log("Move");
         movement.x = ctx.ReadValue<Vector2>().x;
     }
 
@@ -58,12 +58,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (ctx.performed)
         {
-            Debug.Log("Jump");
+            //Debug.Log("Jump");
             rb.linearVelocityY = jumpPower;
         }
         else if(ctx.canceled)
         {
-            Debug.Log("Jump Canceled");
+            //Debug.Log("Jump Canceled");
             rb.linearVelocityY *= 0.5f;
         }
     }

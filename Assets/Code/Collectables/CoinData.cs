@@ -6,6 +6,11 @@ public class CoinData : CollectableEffect
     public int scoreAmount = 1;
     public override void Apply(GameObject collector)
     {
-        Debug.Log("+1 Coin");
+        Debug.Log($"+{scoreAmount} Coin");
+
+        if (ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.AddCoins(scoreAmount);
+        }
     }
 }

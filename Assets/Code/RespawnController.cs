@@ -3,11 +3,10 @@ using UnityEngine;
 public class RespawnController : MonoBehaviour
 {
     public GameObject chekpoint;
-
-    public AudioClip deadSound;
     private Transform tran;
     private Rigidbody2D rb;
-
+    public AudioClip deadSound;
+    
     private void Start()
     {
         tran = this.GetComponent<Transform>();

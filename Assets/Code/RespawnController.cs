@@ -4,6 +4,7 @@ public class RespawnController : MonoBehaviour
 {
     public GameObject chekpoint;
 
+    public AudioClip deadSound;
     private Transform tran;
     private Rigidbody2D rb;
 
@@ -32,6 +33,7 @@ public class RespawnController : MonoBehaviour
 
     public void Respawn()
     {
+        AudioSource.PlayClipAtPoint(deadSound, transform.position);
         Vector3 dbtPos = chekpoint.transform.position;
         transform.position = new Vector3(dbtPos.x, dbtPos.y, transform.position.z);
         rb.linearVelocity = Vector2.zero;

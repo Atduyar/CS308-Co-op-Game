@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: 1Coin
   m_EditorClassIdentifier: 
   collectableName: 1 Coin
-  effect: {fileID: 0}
-  collectSound: {fileID: 0}
+  collectSound: {fileID: 8300000, guid: 934890a9d75764287b379e585ec2bf09, type: 3}
   collectEffect: {fileID: 0}
   scoreAmount: 1

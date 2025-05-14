@@ -12,6 +12,8 @@ public class TurretScript : MonoBehaviour
     float nextTimeToFire = 0;
     public Transform shootpoint;
     public float force;
+
+    public AudioClip shootSound;
     
     
     void Update()
@@ -42,6 +44,7 @@ public class TurretScript : MonoBehaviour
     }
     void shoot()
     {
+        AudioSource.PlayClipAtPoint(shootSound, transform.position);
         GameObject BulletIns = Instantiate(bullet, shootpoint.position, Quaternion.identity);
         BulletIns.GetComponent<Rigidbody2D>().AddForce(Vector2.left * force);
     }

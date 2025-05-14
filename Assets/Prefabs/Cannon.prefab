@@ -52,6 +52,7 @@ MonoBehaviour:
   firerate: 0.35
   shootpoint: {fileID: 3063559966313585523}
   force: 100
+  shootSound: {fileID: 8300000, guid: aff9a0033e88841efa26fcd1e75ddf9b, type: 3}
 --- !u!1 &5691678524004834240
 GameObject:
   m_ObjectHideFlags: 0

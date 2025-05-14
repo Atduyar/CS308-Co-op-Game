@@ -127,6 +127,7 @@ MonoBehaviour:
   moveSpeed: 10
   jumpPower: 10
   limit: 5
+  jumpPlayer: {fileID: 8300000, guid: da31bafe18fd44992ae4d091a63ddcc2, type: 3}
 --- !u!114 &8228639559185997944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chekpoint: {fileID: 0}
+  deadSound: {fileID: 8300000, guid: baa1f691883004f96b4df5b21162acea, type: 3}
 --- !u!1 &6779291314803167204
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5.0f;
     public float jumpPower = 10.0f;
     public float limit = 5.0f;
+
+    public AudioClip jumpPlayer;
     
     private Vector2 movement;
 
@@ -66,5 +68,8 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("Jump Canceled");
             rb.linearVelocityY *= 0.5f;
         }
+
+        AudioSource.PlayClipAtPoint(jumpPlayer, transform.position);
+
     }
 }

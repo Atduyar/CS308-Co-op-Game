@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5759065645295534308}
   - component: {fileID: 5420124041335755091}
+  - component: {fileID: -8448049216939735670}
   m_Layer: 0
   m_Name: Cannon
   m_TagString: Untagged
@@ -47,12 +48,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 10
-  target: {fileID: 0}
   bullet: {fileID: 5127435010467017836, guid: 980570240bf2348fba580312847feb85, type: 3}
   firerate: 0.35
   shootpoint: {fileID: 3063559966313585523}
   force: 100
   shootSound: {fileID: 8300000, guid: aff9a0033e88841efa26fcd1e75ddf9b, type: 3}
+--- !u!95 &-8448049216939735670
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4950039305075194654}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 201a6312142cd4555af1352f0742257d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5691678524004834240
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,52 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretScript : MonoBehaviour
+public class CannonScript : MonoBehaviour
 {
     public float range;
-    public Transform target;
-    bool detected = false;
     public GameObject bullet;
     public float firerate;
     float nextTimeToFire = 0;
     public Transform shootpoint;
     public float force;
-
     public AudioClip shootSound;
-    
-    
+
+    Animator anim;
+
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
+
     void Update()
     {
-        Vector2 targetPos = target.position;
-        Vector2 direction = targetPos - (Vector2)transform.position;
-        RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, direction, range);
-        if (rayInfo)
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, range);
+        bool playerDetected = false;
+
+        foreach (Collider2D hit in hits)
         {
-            if(rayInfo.collider.gameObject.tag == "Player")
+            if (hit.CompareTag("Player"))
             {
-                detected = true;
-            }
-            else
-            {
-                detected = false;
+                playerDetected = true;
+                break;
             }
         }
 
-        if (detected)
+        if (playerDetected && Time.time > nextTimeToFire)
         {
-            if(Time.time > nextTimeToFire)
-            {
-                nextTimeToFire = Time.time + 1 / firerate;
-                shoot();
-            }
+            nextTimeToFire = Time.time + 1 / firerate;
+            shoot();
         }
     }
+
     void shoot()
     {
         AudioSource.PlayClipAtPoint(shootSound, transform.position);
         GameObject BulletIns = Instantiate(bullet, shootpoint.position, Quaternion.identity);
         BulletIns.GetComponent<Rigidbody2D>().AddForce(Vector2.left * force);
+
+        if (anim != null)
+        {
+            anim.SetTrigger("Fire");
+        }
     }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position, range);

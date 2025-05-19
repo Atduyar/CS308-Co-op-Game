@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PenguinPatrol : MonoBehaviour
+public class WalkingEnemy : MonoBehaviour
 {
     public float moveSpeed = 2f;
     public float groundCheckDistance = 1f;
@@ -35,8 +35,6 @@ public class PenguinPatrol : MonoBehaviour
             moveDirection *= -1;
 
         spriteRenderer.flipX = looksLeftByDefault ? moveDirection.x > 0 : moveDirection.x < 0;
-
-        animator.SetBool("isWalking", true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

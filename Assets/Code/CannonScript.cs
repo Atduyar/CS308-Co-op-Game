@@ -16,7 +16,7 @@ public class CannonScript : MonoBehaviour
 
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentsInChildren<Animator>()[0];
     }
 
     void Update()
@@ -36,20 +36,24 @@ public class CannonScript : MonoBehaviour
         if (playerDetected && Time.time > nextTimeToFire)
         {
             nextTimeToFire = Time.time + 1 / firerate;
-            shoot();
+            StartCoroutine(shoot());
+            //shoot();
         }
     }
 
-    void shoot()
+    IEnumerator shoot()
     {
-        AudioSource.PlayClipAtPoint(shootSound, transform.position);
-        GameObject BulletIns = Instantiate(bullet, shootpoint.position, Quaternion.identity);
-        BulletIns.GetComponent<Rigidbody2D>().AddForce(Vector2.left * force);
-
         if (anim != null)
         {
             anim.SetTrigger("Fire");
         }
+
+        yield return new WaitForSeconds(1);
+        
+        AudioSource.PlayClipAtPoint(shootSound, transform.position);
+        GameObject BulletIns = Instantiate(bullet, shootpoint.position, Quaternion.identity);
+        BulletIns.GetComponent<Rigidbody2D>().AddForce(Vector2.left * force);
+
     }
 
     private void OnDrawGizmosSelected()

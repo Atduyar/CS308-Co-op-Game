@@ -9,25 +9,28 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     [Header("Movment")]
     public float moveSpeed = 5.0f;
-    private Vector2 movement;
-
-    [Header("Jump")]
-    public float jumpPower = 10.0f;
-    public int maxJump = 2;
-    public int jumpRemaining = 0;
-
-    [Header("Sound")]
-    public AudioClip jumpPlayer;
-    
-    [Header("GroundCheck")]
-    public Transform groundCheckPos;
-    public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
-    public LayerMask groundLayer;
+    Vector2 movement;
 
     [Header("Gravity")]
     public float baseGravity = 2f;
     public float fallSpeedtMultiplier = 2f;
     public float maxFallSpeed = 20f;
+
+    [Header("Jump")]
+    public float jumpPower = 10.0f;
+    public int maxJump = 2;
+    public int jumpRemaining = 0;
+    public float jumpBufferTime = 0.15f;
+    float jumpBuffer;
+
+    [Header("GroundCheck")]
+    public Transform groundCheckPos;
+    public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
+    public LayerMask groundLayer;
+
+    [Header("Sound")]
+    public AudioClip jumpPlayer;
+
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
@@ -60,25 +63,39 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && jumpRemaining > 0)
+        if (ctx.performed)
         {
-            AudioSource.PlayClipAtPoint(jumpPlayer, transform.position);
-            rb.linearVelocityY = jumpPower;
-            jumpRemaining--;
+            if(jumpRemaining <= 0)
+            {
+                jumpBuffer = Time.fixedTime;
+                return;
+            }
+            PerformJump();
         }
         else if (ctx.canceled)
         {
             rb.linearVelocityY *= 0.5f;
         }
     }
+    public void PerformJump()
+    {
+        AudioSource.PlayClipAtPoint(jumpPlayer, transform.position);
+        rb.linearVelocityY = jumpPower;
+        jumpRemaining--;
+    }
 
 
     public void GroundedCheck()
     {
+        // 0.05f instead of 0 because the floating number errors. sometimes linearVelocity stuck ar minimal negative number.
         if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer)
-            && rb.linearVelocity.y <= 0)
+            && rb.linearVelocity.y <= 0.05f) 
         {
             jumpRemaining = maxJump;
+            if (jumpBuffer + jumpBufferTime >= Time.fixedTime)
+            {
+                PerformJump();
+            }
         }
     }
 

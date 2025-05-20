@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c55868678df134e70b431bab3bc64041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 10
+  range: 25
   bullet: {fileID: 5127435010467017836, guid: 980570240bf2348fba580312847feb85, type: 3}
   firerate: 0.35
   bulletLifeTime: 5

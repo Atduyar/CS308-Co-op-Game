@@ -6,6 +6,7 @@ using UnityEngine.InputSystem.Composites;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public AudioClip backgroundMusic;
     public Rigidbody2D rb;
     public Animator ani;
     [Header("Movment")]

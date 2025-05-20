@@ -49,6 +49,8 @@ MonoBehaviour:
   range: 10
   bullet: {fileID: 5127435010467017836, guid: 980570240bf2348fba580312847feb85, type: 3}
   firerate: 0.35
+  bulletLifeTime: 5
+  flip: 0
   shootpoint: {fileID: 3063559966313585523}
   force: 100
   shootSound: {fileID: 8300000, guid: aff9a0033e88841efa26fcd1e75ddf9b, type: 3}

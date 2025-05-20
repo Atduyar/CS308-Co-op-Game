@@ -7,6 +7,7 @@ using UnityEngine.InputSystem.Composites;
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public Animator ani;
     [Header("Movment")]
     public float moveSpeed = 5.0f;
     Vector2 movement;
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
+        ani = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -41,6 +43,13 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
         GroundedCheck();
         Gravity();
+        UpdateAnimation();
+    }
+
+    public void UpdateAnimation()
+    {
+        ani.SetFloat("Magnitude", rb.linearVelocity.magnitude);
+        ani.SetFloat("yVelocity", rb.linearVelocity.y);
     }
 
     public void Gravity()
@@ -82,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
         AudioSource.PlayClipAtPoint(jumpPlayer, transform.position);
         rb.linearVelocityY = jumpPower;
         jumpRemaining--;
+        ani.SetTrigger("Jump");
     }
 
 

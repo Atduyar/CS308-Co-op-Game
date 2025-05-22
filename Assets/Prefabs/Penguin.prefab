@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8462033528736949931}
   m_Layer: 0
   m_Name: Penguin
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,12 +125,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fea9444748cf4e499a5d941f84b10ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  squishSound: {fileID: 8300000, guid: 4428e3f57e992ac498363cadca37095f, type: 3}
   moveSpeed: 1.5
   groundCheckDistance: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   looksLeftByDefault: 0
+  angularVelocityOnDeath: 360
+  gravityScaleOnDeath: 1
+  destroyDelay: 2
 --- !u!50 &2553268625647032606
 Rigidbody2D:
   serializedVersion: 5
@@ -157,7 +161,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!61 &8462033528736949931
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -188,7 +192,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

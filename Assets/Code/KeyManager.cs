@@ -23,7 +23,7 @@ public class KeyManager : MonoBehaviour
             return;
         }
 
-        
+
         if (!File.Exists(filePath))
         {
             File.WriteAllText(filePath, inputKey);
@@ -31,13 +31,13 @@ public class KeyManager : MonoBehaviour
             return;
         }
 
-       
+
         string savedKey = File.ReadAllText(filePath);
         if (inputKey == savedKey)
         {
             Debug.Log("Key doðru, giriþ baþarýlý!");
-            
-           
+
+
         }
         else
         {

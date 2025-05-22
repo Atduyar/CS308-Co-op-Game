@@ -2,25 +2,37 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 
-public class PlayButtonControl : MonoBehaviour
+public class PlayButtonController : MonoBehaviour
 {
     public Button playButton;
 
-    void Start()
+    private string filePath;
+
+    void Awake()
     {
-        string filePath = Path.Combine(Application.persistentDataPath, "userkey.txt");
+        filePath = Path.Combine(Application.persistentDataPath, "userkey.txt");
+        Refresh();
+    }
 
-        if (!File.Exists(filePath) || string.IsNullOrEmpty(File.ReadAllText(filePath)))
+    public void Refresh()
+    {
+        if (File.Exists(filePath))
         {
-            playButton.interactable = false;
+            string key = File.ReadAllText(filePath).Trim();
 
-            // Gri renk ayarla
-            ColorBlock colors = playButton.colors;
-            colors.normalColor = Color.gray;
-            colors.highlightedColor = Color.gray;
-            colors.pressedColor = Color.gray;
-            colors.selectedColor = Color.gray;
-            playButton.colors = colors;
+            if (!string.IsNullOrEmpty(key))
+            {
+                playButton.interactable = true;
+                return;
+            }
         }
+
+        playButton.interactable = false;
+
+        ColorBlock grayColors = playButton.colors;
+        grayColors.normalColor = Color.gray;
+        grayColors.highlightedColor = Color.gray;
+        grayColors.pressedColor = Color.gray;
+        playButton.colors = grayColors;
     }
 }

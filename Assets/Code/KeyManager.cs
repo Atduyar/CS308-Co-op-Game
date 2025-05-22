@@ -10,6 +10,7 @@ public class KeyManager : MonoBehaviour
     void Start()
     {
         filePath = Path.Combine(Application.persistentDataPath, "userkey.txt");
+        Debug.Log("Dosya yolu: " + filePath);
     }
 
     public void SaveAndLogin()
@@ -22,7 +23,7 @@ public class KeyManager : MonoBehaviour
             return;
         }
 
-       
+        
         if (!File.Exists(filePath))
         {
             File.WriteAllText(filePath, inputKey);
@@ -30,13 +31,13 @@ public class KeyManager : MonoBehaviour
             return;
         }
 
-        
+       
         string savedKey = File.ReadAllText(filePath);
         if (inputKey == savedKey)
         {
             Debug.Log("Key doðru, giriþ baþarýlý!");
             
-            // SceneManager.LoadScene("Level1");
+           
         }
         else
         {

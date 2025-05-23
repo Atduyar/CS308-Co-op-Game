@@ -2,6 +2,9 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.IO;
+using TMPro;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -10,16 +13,33 @@ public class MainMenu : MonoBehaviour
     public GameObject loginPanel;
     public GameObject creditsPanel;
     public GameObject mainMenuPanel;
+    public TMP_InputField keyInputField;
+    public Button playButton;
+    public TMP_Text playText;
 
+    private string filePath;
+    private string JwtKey;
 
     public void Start()
     {
+        filePath = Path.Combine(Application.persistentDataPath, "userkey.txt");
+        Debug.Log("Save File Path: " + filePath);
+        if (File.Exists(filePath))
+        {
+            JwtKey = File.ReadAllText(filePath);
+        }
+        else
+        {
+            JwtKey = null;
+        }
+
         ShowMainMenu();
+        RefreshLoginBtn();
     }
 
     public void StartGame()
     {
-        AudioSource.PlayClipAtPoint(selectSound, transform.position);   
+        AudioSource.PlayClipAtPoint(selectSound, transform.position);
         int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(nextIndex);
     }
@@ -67,5 +87,43 @@ public class MainMenu : MonoBehaviour
         loginPanel.SetActive(false);
         lobiPanel.SetActive(true);
         creditsPanel.SetActive(false);
+    }
+
+    public void RefreshLoginBtn()
+    {
+        if (File.Exists(filePath))
+        {
+            JwtKey = File.ReadAllText(filePath).Trim();
+
+            if (!string.IsNullOrEmpty(JwtKey))
+            {
+                playButton.interactable = true;
+                playText.color = Color.white;
+                return;
+            }
+        }
+
+        // No Key
+        playButton.interactable = false;
+        playText.color = Color.gray;
+    }
+
+    public void Login()
+    {
+        string inputKey = keyInputField.text;
+
+        // Invalid Key
+        if (string.IsNullOrEmpty(inputKey))
+        {
+            Debug.LogWarning("Invalid key.");
+            return;
+        }
+
+        // Save new key
+        File.WriteAllText(filePath, inputKey);
+        Debug.Log("Key saved: " + inputKey);
+        JwtKey = inputKey;
+        RefreshLoginBtn();
+        ShowMainMenu();
     }
 }

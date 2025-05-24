@@ -20,7 +20,6 @@ public class Bullet : MonoBehaviour
 
     private bool IsFrontHit(Collider2D playerCollider)
     {
-        // Oyuncunun yönüne göre mermi hangi taraftan geldi kontrolü
         Transform playerTransform = playerCollider.transform;
         SpriteRenderer playerSprite = playerCollider.GetComponentInChildren<SpriteRenderer>();
 
@@ -31,9 +30,9 @@ public class Bullet : MonoBehaviour
         bool playerLookingLeft = playerSprite.flipX;
 
         if (playerLookingLeft)
-            return bulletX < playerX; // Soluna çarpıyorsa
+            return bulletX < playerX;
         else
-            return bulletX > playerX; // Sağına çarpıyorsa
+            return bulletX > playerX;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -45,7 +44,6 @@ public class Bullet : MonoBehaviour
             RespawnController respawn = collision.GetComponent<RespawnController>();
             PlayerPower playerPower = collision.GetComponent<PlayerPower>();
 
-            // Ön cepheden çarptıysa ve kalkan yoksa: mermi Die() olur
             if (IsFrontHit(collision))
             {
                 if (playerPower != null && playerPower.bulletShield)
@@ -54,11 +52,10 @@ public class Bullet : MonoBehaviour
                     return;
                 }
 
-                Die(); // Ön cepheden gelen mermiler döner düşer
+                Die();
                 return;
             }
 
-            // Arka/yukarı/aşağıdan geliyorsa: oyuncu ölür, mermi yok olmaz
             if (respawn != null)
                 respawn.Respawn();
         }

@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
     public TMP_Text playText;
 
     private string filePath;
-    private string JwtKey;
+    public static string JwtKey;
 
     public void Start()
     {

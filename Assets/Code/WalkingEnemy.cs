@@ -79,6 +79,9 @@ public class WalkingEnemy : MonoBehaviour
 
 
 
+
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (isDead) return;
@@ -86,12 +89,12 @@ public class WalkingEnemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             ContactPoint2D contact = collision.GetContact(0);
-
-            if (contact.normal.y < -0.5f)
+            PlayerPower playerPower = collision.gameObject.GetComponent<PlayerPower>();
+            if (playerPower.enemyKiller == true && contact.normal.y < -0.5f)
             {
                 Die();
 
-   
+
                 PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
                 if (player != null)
                     player.Bounce(10f);
@@ -106,3 +109,5 @@ public class WalkingEnemy : MonoBehaviour
         }
     }
 }
+
+

@@ -72,15 +72,41 @@ public class LobbySpawner : MonoBehaviour
             }
         }
     }
+    IEnumerator CreateLobby(string name)
+    {
+        using (UnityWebRequest webRequest = UnityWebRequest.Post("https://aaa.evrenomi.com/lobby", "{\"name\": \"" + name + "\"}", "application/json"))
+        {
+            webRequest.SetRequestHeader("Authorization", "Bearer " + MainMenu.JwtKey);
+            webRequest.SetRequestHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
+            yield return webRequest.SendWebRequest();
+
+            switch (webRequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.DataProcessingError:
+                    Debug.LogError("UnityWebRequest: Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.ProtocolError:
+                    Debug.LogError("UnityWebRequest: HTTP Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.Success:
+                    Debug.Log("UnityWebRequest:\nReceived: " + webRequest.downloadHandler.text);
+                    RefreshLobbies();
+                    break;
+            }
+        }
+    }
     public void AddLobby()
     {
         string input = newLobbyInput.text.Trim();
-
         if (string.IsNullOrEmpty(input))
         {
             Debug.LogWarning("Lobi adý boþ olamaz.");
             return;
         }
+    
+        StartCoroutine(CreateLobby(input));
     }
     void RefreshLobbies()
     {

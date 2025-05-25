@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using NativeWebSocket;
 
 public class PlayerMovement : MonoBehaviour
 {
+    WebSocket websocket;
+
     public AudioClip backgroundMusic;
     public Rigidbody2D rb;
     public Animator ani;
@@ -41,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (spriteRenderer == null)
             Debug.LogWarning("SpriteRenderer not found on PlayerMovement!");
+
+        WebSocketStart();
     }
 
     void Update()
@@ -131,5 +136,49 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.white;
         Gizmos.DrawCube(groundCheckPos.position, groundCheckSize);
+    }
+
+
+    // ---------- WebSocket Part
+    async void WebSocketStart()
+    {
+        websocket = new WebSocket("wss://aaa.evrenomi.com");
+        //websocket = new WebSocket("ws://localhost:8080");
+        websocket.OnOpen += () =>
+        {
+            string joinJOSN = "{\"type\": \"join\",\"lobbyId\": "+ MainManager.Instance.lobbyId + "}";
+
+            websocket.SendText(joinJOSN);
+            Debug.Log("Connection open!\n"+joinJOSN);
+        };
+
+        websocket.OnError += (e) =>
+        {
+            Debug.Log("Error! " + e);
+        };
+
+        websocket.OnClose += (e) =>
+        {
+            Debug.Log("Connection closed!");
+        };
+
+        websocket.OnMessage += (bytes) =>
+        {
+            Debug.Log("OnMessage!");
+            Debug.Log(bytes);
+            Debug.Log(bytes.ToString());
+
+            // getting the message as a string
+            // var message = System.Text.Encoding.UTF8.GetString(bytes);
+            // Debug.Log("OnMessage! " + message);
+        };
+
+        // Keep sending messages at every 0.3s
+        //InvokeRepeating("SendWebSocketMessage", 0.0f, 0.3f);
+
+        // waiting for messages
+        await websocket.Connect();
+
+        //MainManager.Instance.lobbyId;
     }
 }

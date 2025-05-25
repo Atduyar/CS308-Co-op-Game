@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 5013711615086860499}
   - component: {fileID: 8228639559185997944}
   - component: {fileID: 1871372322644579753}
+  - component: {fileID: 6136766180140762918}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -154,11 +155,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214d1027395ad32429e19abe1d215ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundMusic: {fileID: 0}
   rb: {fileID: 0}
   ani: {fileID: 0}
   moveSpeed: 10
   baseGravity: 2
-  fallSpeedtMultiplier: 1.5
+  fallSpeedMultiplier: 2
   maxFallSpeed: 20
   jumpPower: 11.5
   maxJump: 1
@@ -312,8 +314,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e94698ebb1244aa4a88bf8fa6b2bd65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkpointAnimationPrefab: {fileID: 0}
   chekpoint: {fileID: 0}
   deadSound: {fileID: 8300000, guid: baa1f691883004f96b4df5b21162acea, type: 3}
+--- !u!114 &6136766180140762918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5716455460151984414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba0cb715fbd33941b1af2b60ad7e4e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyKiller: 1
+  bulletShield: 0
 --- !u!1 &6779291314803167204
 GameObject:
   m_ObjectHideFlags: 0

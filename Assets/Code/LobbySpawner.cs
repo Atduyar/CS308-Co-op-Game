@@ -124,6 +124,7 @@ public class LobbySpawner : MonoBehaviour
 
         btn.GetComponent<Button>().onClick.AddListener(() =>
         {
+            MainManager.Instance.lobbyId = lobby.id;
             Debug.Log("Katýlýnýyor: " + lobby.id);
             SceneManager.LoadScene("Level1");
         });

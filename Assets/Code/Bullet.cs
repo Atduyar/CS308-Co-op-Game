@@ -72,10 +72,6 @@ public class Bullet : MonoBehaviour
             if (respawn != null)
                 respawn.Respawn();
         }
-        else if (collision.CompareTag("Wall"))
-        {
-            Destroy(gameObject);
-        }
     }
 
     private void PlayHitSound()

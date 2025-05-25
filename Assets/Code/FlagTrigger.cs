@@ -14,7 +14,8 @@ public class FlagTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            gameManager.GameOver();
+            RespawnController respawn = collision.GetComponent<RespawnController>();
+            gameManager.GameOver(respawn);
         }
     }
 }

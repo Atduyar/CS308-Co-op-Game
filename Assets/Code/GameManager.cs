@@ -5,10 +5,11 @@ using System.Collections;
 public class GameManager : MonoBehaviour
 {
     public GameObject gameOverUI;
+    public GameObject startingChackpoint;
 
     private bool gameOver = false;
 
-    public void GameOver()
+    public void GameOver(RespawnController rc)
     {
         if (gameOver) return;
         gameOver = true;
@@ -16,16 +17,17 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over function called!");
         gameOverUI.SetActive(true);
 
-        StartCoroutine(RestartAfterDelay(3f));
+        rc.chekpoint = startingChackpoint;
 
-        Time.timeScale = 0f;
+        StartCoroutine(RestartAfterDelay(rc, 3f));
     }
 
-    private IEnumerator RestartAfterDelay(float delay)
+    private IEnumerator RestartAfterDelay(RespawnController rc, float delay)
     {
         yield return new WaitForSecondsRealtime(delay);
 
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        gameOver = false;
+        gameOverUI.SetActive(false);
+        rc.Respawn();
     }
 }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Globalization;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -77,7 +78,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 #if !UNITY_WEBGL || UNITY_EDITOR
-        websocket.DispatchMessageQueue();
+        if(websocket != null)
+            websocket.DispatchMessageQueue();
 #endif
         rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
         GroundedCheck();
@@ -99,8 +101,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if(meP.pos.x != transform.position.x || meP.pos.y != transform.position.y)
                 {
-                    Debug.Log("Update");// 
-                    string joinJOSN = "{\"type\": \"uPos\",\"pos\": {\"x\":" + transform.position.x + ",\"y\":"+ transform.position.y + "}}";
+                    string joinJOSN = "{\"type\": \"uPos\",\"pos\": {\"x\":" + transform.position.x.ToString(CultureInfo.InvariantCulture) + ",\"y\":"+ transform.position.y.ToString(CultureInfo.InvariantCulture) + "}}";
 
                     websocket.SendText(joinJOSN);
                     meP.pos.x = transform.position.x;
@@ -343,6 +344,8 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdateSlavePlayerPositions()
     {
+        if (wsPlayers == null)
+            return;
         foreach (var player in wsPlayers)
         {
             if (player.id != wsMyId) // Don't update local player

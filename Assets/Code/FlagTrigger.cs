@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FlagTrigger : MonoBehaviour
@@ -6,7 +7,7 @@ public class FlagTrigger : MonoBehaviour
 
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        gameManager = FindAnyObjectByType<GameManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

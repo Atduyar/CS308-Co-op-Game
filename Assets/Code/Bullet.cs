@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public AudioClip hitPlayerSound;
+    private AudioSource audioSource;
+
     public float gravityScaleOnDeath = 1f;
     public float angularVelocityOnDeath = 360f;
     public float destroyDelay = 2f;
@@ -9,10 +12,12 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D col;
     private SpriteRenderer spriteRenderer;
+
     private bool isDead = false;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -29,10 +34,7 @@ public class Bullet : MonoBehaviour
         float playerX = playerTransform.position.x;
         bool playerLookingLeft = playerSprite.flipX;
 
-        if (playerLookingLeft)
-            return bulletX < playerX;
-        else
-            return bulletX > playerX;
+        return playerLookingLeft ? bulletX < playerX : bulletX > playerX;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,15 +46,26 @@ public class Bullet : MonoBehaviour
             RespawnController respawn = collision.GetComponent<RespawnController>();
             PlayerPower playerPower = collision.GetComponent<PlayerPower>();
 
+            float yDifference = Mathf.Abs(collision.transform.position.y - transform.position.y);
+
+            if (yDifference > 0.5f)
+            {
+                if (respawn != null)
+                    respawn.Respawn();
+                return;
+            }
+
             if (IsFrontHit(collision))
             {
                 if (playerPower != null && playerPower.bulletShield)
                 {
                     Die();
+                    PlayHitSound();
                     return;
                 }
 
-                Die();
+                if (respawn != null)
+                    respawn.Respawn();
                 return;
             }
 
@@ -63,6 +76,12 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void PlayHitSound()
+    {
+        if (hitPlayerSound != null && audioSource != null)
+            audioSource.PlayOneShot(hitPlayerSound);
     }
 
     public void Die()

@@ -2,6 +2,7 @@ using UnityEngine;
  
 public class RespawnController : MonoBehaviour
 {
+    public GameObject checkpointAnimationPrefab;
     public GameObject chekpoint;
     private Transform tran;
     private Rigidbody2D rb;
@@ -28,7 +29,14 @@ public class RespawnController : MonoBehaviour
     public void TakeChekpoint(GameObject cp)
     {
         chekpoint = cp;
+
+        if (checkpointAnimationPrefab != null)
+        {
+            Instantiate(checkpointAnimationPrefab, cp.transform.position, Quaternion.identity);
+        }
     }
+
+
 
     public void Respawn()
     {

@@ -1,10 +1,9 @@
 using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
 using UnityEngine.SceneManagement;
 using System.IO;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class MainMenu : MonoBehaviour
 {
@@ -24,9 +23,9 @@ public class MainMenu : MonoBehaviour
     {
         filePath = Path.Combine(Application.persistentDataPath, "userkey.txt");
         Debug.Log("Save File Path: " + filePath);
-        if (File.Exists(filePath))
+        if (System.IO.File.Exists(filePath))
         {
-            JwtKey = File.ReadAllText(filePath);
+            JwtKey = System.IO.File.ReadAllText(filePath);
         }
         else
         {
@@ -91,9 +90,9 @@ public class MainMenu : MonoBehaviour
 
     public void RefreshLoginBtn()
     {
-        if (File.Exists(filePath))
+        if (System.IO.File.Exists(filePath))
         {
-            JwtKey = File.ReadAllText(filePath).Trim();
+            JwtKey = System.IO.File.ReadAllText(filePath).Trim();
 
             if (!string.IsNullOrEmpty(JwtKey))
             {
@@ -119,8 +118,13 @@ public class MainMenu : MonoBehaviour
             return;
         }
 
+        inputKey = inputKey.Replace(" ", "");
+        inputKey = inputKey.Replace("\r", "");
+        inputKey = inputKey.Replace("\n", "");
+        inputKey = inputKey.Replace("\t", "");
+
         // Save new key
-        File.WriteAllText(filePath, inputKey);
+        System.IO.File.WriteAllText(filePath, inputKey);
         Debug.Log("Key saved: " + inputKey);
         JwtKey = inputKey;
         RefreshLoginBtn();
